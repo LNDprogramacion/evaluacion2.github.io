@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0064)https://www.arkaitzgarro.com/javascript/snippets/cap18/ej21.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Ejercicio 21 - Validación de formularios</title>
+    
+</head>
+
+<body>
+    <form id="myForm">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+      
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+      
+        <label for="comments">Comentarios:</label>
+        <textarea id="comments" name="comments" maxlength="50"></textarea>
+      
+        <button type="submit">Enviar</button>
+      </form>
+      
+      <script>
+      const form = document.getElementById('myForm');
+      
+      const nameInput = document.getElementById('name');
+      nameInput.addEventListener('blur', () => {
+        if (nameInput.value === '') {
+          alert('El nombre es obligatorio');
+        }
+      });
+      
+      const emailInput = document.getElementById('email');
+      emailInput.addEventListener('blur', () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+          alert('El email no es válido');
+        }
+      });
+      
+      const passwordInput = document.getElementById('password');
+      passwordInput.addEventListener('blur', () => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+        if (!passwordRegex.test(passwordInput.value)) {
+          alert('La contraseña debe tener al menos una letra minúscula, una letra mayúscula y un dígito, y tener una longitud mínima de 6 caracteres');
+        }
+      });
+      
+      const commentsInput = document.getElementById('comments');
+      commentsInput.addEventListener('blur', () => {
+        if (commentsInput.value.length > 50) {
+          alert('Los comentarios no pueden exceder los 50 caracteres');
+        }
+      });
+      
+      form.addEventListener('submit', (event) => {
+        const nameValue = nameInput.value.trim();
+        const emailValue = emailInput.value.trim();
+        const passwordValue = passwordInput.value.trim();
+        const commentsValue = commentsInput.value.trim();
+      
+        if (nameValue === '' || emailValue === '' || passwordValue === '') {
+          alert('Los campos nombre, email y contraseña son obligatorios');
+          event.preventDefault();
+          return;
+        }
+      
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailValue)) {
+          alert('El email no es válido');
+          event.preventDefault();
+          return;
+        }
+      
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+        if (!passwordRegex.test(passwordValue)) {
+          alert('La contraseña debe tener al menos una letra minúscula, una letra mayúscula y un dígito, y tener una longitud mínima de 6 caracteres');
+          event.preventDefault();
+          return;
+        }
+      
+        if (commentsValue.length > 50) {
+          alert('Los comentarios no pueden exceder los 50 caracteres');
+          event.preventDefault();
+          return;
+        }
+      });
+      </script>
+      
+
+</body></html>

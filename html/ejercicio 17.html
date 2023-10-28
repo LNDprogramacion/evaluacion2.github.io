@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>solucion 17</title>
+</head>
+<body>
+  <h2>Sección 1</h2>
+  <a href="#" onclick="toggleSection(1)">Ocultar/Mostrar</a>
+  <div id="section1">
+    <p>Contenido de la sección 1</p>
+  </div>
+
+  <h2>Sección 2</h2>
+  <a href="#" onclick="toggleSection(2)">Ocultar/Mostrar</a>
+  <div id="section2">
+    <p>Contenido de la sección 2</p>
+  </div>
+
+  <h2>Sección 3</h2>
+  <a href="#" onclick="toggleSection(3)">Ocultar/Mostrar</a>
+  <div id="section3">
+    <p>Contenido de la sección 3</p>
+  </div>
+
+  <script type="text/javascript">
+    function toggleSection(sectionNumber) {
+      var section = document.getElementById("section" + sectionNumber);
+      var link = document.getElementsByTagName("a")[sectionNumber - 1];
+      if (section.style.display === "none") {
+        section.style.display = "block";
+        link.innerHTML = "Ocultar";
+      } else {
+        section.style.display = "none";
+        link.innerHTML = "Mostrar";
+      }
+    }
+  </script>
+</body>
+</html>
